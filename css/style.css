@@ -280,3 +280,18 @@ p{
     scroll-behavior: auto !important;
   }
 }
+/* ===== ボタンの矢印アニメーション ===== */
+.btn::after{
+  content: "→";
+  margin-left: 6px;
+  transition: transform .2s ease;
+}
+.btn:hover::after{
+  transform: translateX(4px);
+}
+
+/* ===== カード内アイコンのホバー ===== */
+.card:hover .icon{
+  transform: scale(1.1);
+  transition: transform .2s ease;
+}
