@@ -365,3 +365,34 @@ p{
     border-radius: 999px;
   }
 }
+/* ===== スマホ：ナビを2段目に逃がして「概要だけ」問題を確実に解消 ===== */
+@media (max-width: 760px){
+  .site-header .container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;          /* ← 2段にする */
+    gap: 10px 12px;
+  }
+
+  /* ロゴ（左側）は1段目に残す */
+  .logo{
+    flex: 0 0 auto;
+  }
+
+  /* ナビは2段目で横幅100%を確保 */
+  .nav{
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;          /* ← 入りきらなければ折り返し（切れない） */
+  }
+
+  .nav a{
+    white-space: nowrap;
+    padding: 8px 10px;
+    border-radius: 999px;
+  }
+}
