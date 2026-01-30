@@ -311,3 +311,27 @@ p{
     text-orientation: mixed;
   }
 }
+/* ===== スマホでナビが細く潰れるのを防ぐ（決定版） ===== */
+@media (max-width: 760px){
+  .site-header .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .nav{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: auto;
+    max-width: none;
+    white-space: nowrap;
+  }
+
+  .nav a{
+    display: inline-block;
+    white-space: nowrap;
+    padding: 6px 8px;
+  }
+}
