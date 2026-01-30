@@ -134,3 +134,10 @@ a{ color: inherit; text-decoration: none; }
   display: block;
 }
 
+.card-head svg{
+  width: 32px !important;
+  height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
+}
+
