@@ -295,3 +295,11 @@ p{
   transform: scale(1.1);
   transition: transform .2s ease;
 }
+/* ===== スマホでナビが縦書きになるのを強制解除 ===== */
+@media (max-width: 760px){
+  .nav,
+  .nav a{
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+  }
+}
