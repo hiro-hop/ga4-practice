@@ -143,3 +143,141 @@ a{ color: inherit; text-decoration: none; }
 
 body{ outline: 10px solid red !important; }
 
+
+/* ===== Modern UI polish (hover / buttons / feel) ===== */
+:root{
+  --bg: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+
+  --primary: #2563eb;      /* 青 */
+  --primary-2: #7c3aed;    /* 紫（差し色） */
+  --surface: #f8fafc;      /* 薄い背景 */
+  --shadow: 0 10px 30px rgba(0,0,0,.08);
+  --shadow-sm: 0 6px 18px rgba(0,0,0,.10);
+  --radius: 16px;
+}
+
+body{
+  color: var(--text);
+  background: linear-gradient(180deg, var(--surface), #fff 55%);
+}
+
+/* リンクの“若い”反応（下線は常時じゃなく hover で） */
+a{
+  transition: color .2s ease, background-color .2s ease, transform .2s ease;
+}
+
+/* ナビ：ホバーでふわっと、押せそうに */
+.nav a{
+  border: 1px solid transparent;
+  background: transparent;
+}
+.nav a:hover{
+  background: rgba(37, 99, 235, .08);
+  border-color: rgba(37, 99, 235, .12);
+  transform: translateY(-1px);
+}
+.nav a:focus-visible{
+  outline: 3px solid rgba(37, 99, 235, .35);
+  outline-offset: 2px;
+}
+
+/* セクション見出しを少し今っぽく */
+h1, h2{
+  letter-spacing: -0.02em;
+}
+p{
+  color: var(--text);
+}
+
+/* ヒーロー：背景をほんのり、カード化（派手にしない） */
+.hero{
+  padding: 44px 0;
+}
+.hero-inner{
+  background: rgba(255,255,255,.8);
+  border: 1px solid rgba(229,231,235,.8);
+  border-radius: calc(var(--radius) + 8px);
+  box-shadow: var(--shadow);
+  padding: 22px;
+  backdrop-filter: blur(6px);
+}
+
+/* ボタン（CTA） */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 99, 235, .25);
+  font-weight: 600;
+  line-height: 1;
+  user-select: none;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.btn:active{
+  transform: translateY(0);
+  box-shadow: none;
+}
+.btn:focus-visible{
+  outline: 3px solid rgba(37, 99, 235, .35);
+  outline-offset: 2px;
+}
+
+.btn-primary{
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(90deg, var(--primary), var(--primary-2));
+}
+.btn-primary:hover{
+  filter: brightness(1.02);
+}
+
+.btn-ghost{
+  background: rgba(255,255,255,.7);
+}
+
+/* カード：ホバーで浮く + 触りたくなる */
+.card{
+  border: 1px solid rgba(229,231,235,.9);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 0 rgba(0,0,0,.02);
+  transition: transform .18s ease, box-shadow .22s ease, border-color .22s ease;
+  background: rgba(255,255,255,.85);
+}
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: rgba(37,99,235,.18);
+}
+
+/* “できること”アイコンを色で今っぽく（サイズは維持） */
+.card-head .icon{
+  color: var(--primary);
+}
+
+/* クリック導線が分かるようにカード内リンクを強調（ある場合） */
+.card a{
+  color: var(--primary);
+  font-weight: 600;
+}
+.card a:hover{
+  text-decoration: underline;
+}
+
+/* 動きが苦手な人への配慮（アクセシビリティ） */
+@media (prefers-reduced-motion: reduce){
+  *{
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
