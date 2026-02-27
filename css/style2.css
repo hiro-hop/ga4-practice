@@ -1,0 +1,283 @@
+/* ===== 最小の土台 ===== */
+*{ box-sizing: border-box; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", sans-serif;
+  line-height:1.7;
+}
+a{ color: inherit; text-decoration: none; }
+
+/* ===== レイアウト ===== */
+.container{
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ===== ヘッダー（ロゴが改行しない・巨大化しない） ===== */
+.site-header{
+  border-bottom: 1px solid #e8e8e8;
+  background: #fff;
+}
+.site-header .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding-top:12px;
+  padding-bottom:12px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0;
+  white-space:nowrap;      /* ← 改行させない */
+  flex: 0 0 auto;          /* ← 幅を奪われても崩れない */
+}
+.logo img{
+  height:44px;
+  width:auto;
+  display:block;
+}
+.logo-text{
+  white-space:nowrap;      /* ← 改行させない */
+  font-weight:600;
+  font-size: 1.1rem;
+}
+
+/* ナビ */
+.nav{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;          /* ← 幅が足りないときはナビが折り返す */
+  justify-content:flex-end;
+}
+.nav a{
+  padding:6px 10px;
+  border-radius: 10px;
+}
+.nav a:hover{
+  background: #f2f4f8;
+}
+
+/* ===== ヒーロー（最低限） ===== */
+.hero{
+  padding: 34px 0;
+}
+.hero-inner{
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 24px;
+  align-items:center;
+}
+.hero-art img{
+  width:100%;
+  max-width: 360px;
+  height:auto;
+  display:block;
+  margin-left:auto;
+}
+
+@media (max-width: 760px){
+  .hero-inner{ grid-template-columns: 1fr; }
+  .hero-art img{ margin: 0 auto; }
+}
+
+/* ===== セクション（最低限） ===== */
+.section{
+  padding: 28px 0;
+}
+.cards{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.card{
+  border:1px solid #e8e8e8;
+  border-radius: 16px;
+  padding: 16px;
+  background:#fff;
+}
+@media (max-width: 900px){
+  .cards{ grid-template-columns: 1fr; }
+}
+/* ===== 「できること」アイコンのサイズ調整 ===== */
+.card-head{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-head .icon{
+  width: 32px;     /* ← 基本サイズ（上品） */
+  height: 32px;
+  flex-shrink: 0;  /* ← 縮まない */
+}
+
+.card-head .icon svg{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* ===== FIX: できることアイコンが巨大になるのを強制停止 ===== */
+.card-head .icon{
+  width: 32px !important;
+  height: 32px !important;
+  flex: 0 0 32px !important;
+}
+
+.card-head .icon svg{
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.card-head svg{
+  width: 32px !important;
+  height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
+}
+
+body{ outline: 10px solid red !important; }
+
+
+/* ===== Modern UI polish (hover / buttons / feel) ===== */
+:root{
+  --bg: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+
+  --primary: #2563eb;      /* 青 */
+  --primary-2: #7c3aed;    /* 紫（差し色） */
+  --surface: #f8fafc;      /* 薄い背景 */
+  --shadow: 0 10px 30px rgba(0,0,0,.08);
+  --shadow-sm: 0 6px 18px rgba(0,0,0,.10);
+  --radius: 16px;
+}
+
+body{
+  color: var(--text);
+  background: linear-gradient(180deg, var(--surface), #fff 55%);
+}
+
+/* リンクの“若い”反応（下線は常時じゃなく hover で） */
+a{
+  transition: color .2s ease, background-color .2s ease, transform .2s ease;
+}
+
+/* ナビ：ホバーでふわっと、押せそうに */
+.nav a{
+  border: 1px solid transparent;
+  background: transparent;
+}
+.nav a:hover{
+  background: rgba(37, 99, 235, .08);
+  border-color: rgba(37, 99, 235, .12);
+  transform: translateY(-1px);
+}
+.nav a:focus-visible{
+  outline: 3px solid rgba(37, 99, 235, .35);
+  outline-offset: 2px;
+}
+
+/* セクション見出しを少し今っぽく */
+h1, h2{
+  letter-spacing: -0.02em;
+}
+p{
+  color: var(--text);
+}
+
+/* ヒーロー：背景をほんのり、カード化（派手にしない） */
+.hero{
+  padding: 44px 0;
+}
+.hero-inner{
+  background: rgba(255,255,255,.8);
+  border: 1px solid rgba(229,231,235,.8);
+  border-radius: calc(var(--radius) + 8px);
+  box-shadow: var(--shadow);
+  padding: 22px;
+  backdrop-filter: blur(6px);
+}
+
+/* ボタン（CTA） */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 99, 235, .25);
+  font-weight: 600;
+  line-height: 1;
+  user-select: none;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.btn:active{
+  transform: translateY(0);
+  box-shadow: none;
+}
+.btn:focus-visible{
+  outline: 3px solid rgba(37, 99, 235, .35);
+  outline-offset: 2px;
+}
+
+.btn-primary{
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(90deg, var(--primary), var(--primary-2));
+}
+.btn-primary:hover{
+  filter: brightness(1.02);
+}
+
+.btn-ghost{
+  background: rgba(255,255,255,.7);
+}
+
+/* カード：ホバーで浮く + 触りたくなる */
+.card{
+  border: 1px solid rgba(229,231,235,.9);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 0 rgba(0,0,0,.02);
+  transition: transform .18s ease, box-shadow .22s ease, border-color .22s ease;
+  background: rgba(255,255,255,.85);
+}
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: rgba(37,99,235,.18);
+}
+
+/* “できること”アイコンを色で今っぽく（サイズは維持） */
+.card-head .icon{
+  color: var(--primary);
+}
+
+/* クリック導線が分かるようにカード内リンクを強調（ある場合） */
+.card a{
+  color: var(--primary);
+  font-weight: 600;
+}
+.card a:hover{
+  text-decoration: underline;
+}
+
+/* 動きが苦手な人への配慮（アクセシビリティ） */
+@media (prefers-reduced-motion: reduce){
+  *{
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
